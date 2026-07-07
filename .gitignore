@@ -1,0 +1,43 @@
+# Environments
+.env
+.venv/
+venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# Database
+database/
+*.db
+*.db.wal
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Generated graph visualizations
+*.html.tmp
+lib/
+
+# DuckDB
+*.duckdb
+*.duckdb.wal
+
+# Logs
+*.log
+
+# Streamlit
+.streamlit/secrets.toml
+
+.claude/
+.claude/
+RouteZero_ClaudeCode_Spec.md

@@ -1,0 +1,26 @@
+{
+  "incident_id": "INC-2026-0149",
+  "jira_ticket_ref": "PAY-1057",
+  "timestamp": "2026-07-02T18:05:00",
+  "service": "payment-service",
+  "failure_type": "null_pointer",
+  "environment": "production",
+  "is_critical_path": true,
+  "affected_users": 847,
+  "priority": "P1",
+  "stack_trace_locations": [
+    {
+      "file_path": "payment_service/processor.py",
+      "line_number": 31,
+      "function_name": "process_payment",
+      "raw_line": "  File \"payment_service/processor.py\", line 31, in process_payment"
+    }
+  ],
+  "probable_cause": "Deployment c9d4e17 by Elena Volkov 22 minutes before the incident (\"Refactor gateway retry wrapper\") most likely reintroduced the unguarded access to the gateway response.",
+  "linked_deployment": "c9d4e17",
+  "routing_confidence": 0.91,
+  "owning_team": "payments-team",
+  "resolved": true,
+  "resolution_time_minutes": 187,
+  "agent3_summary": "Payment processing broke for 847 production users when process_payment dereferenced a None gateway response at line 31 shortly after a retry-logic refactor was deployed."
+}

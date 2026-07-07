@@ -1,0 +1,21 @@
+2026-07-05 16:21:44,207 WARNING ml_service.recommender: recommendation row generation degraded on staging; inference latency p99 above 2000ms over the last 15m (model=ranker-v14)
+2026-07-05 16:21:44,231 ERROR ml_service.recommender: Recommender failed to rank titles for user usr_20871 on staging
+Traceback (most recent call last):
+  File "ml_service/recommender.py", line 49, in _call_inference
+    response = requests.post(self.inference_url, json=payload, timeout=timeout_seconds)
+  File "/usr/local/lib/python3.11/site-packages/requests/api.py", line 115, in post
+    return request("post", url, data=data, json=json, **kwargs)
+  File "/usr/local/lib/python3.11/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.11/site-packages/requests/adapters.py", line 713, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: HTTPConnectionPool(host='ml-inference.staging.internal', port=80): Read timed out. (read timeout=2.5)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "ml_service/recommender.py", line 42, in get_recommendations
+    ranked = self._call_inference(payload)
+  File "ml_service/recommender.py", line 51, in _call_inference
+    raise TimeoutError(
+TimeoutError: Model inference request to http://ml-inference.staging.internal/v1/rank timed out after 2500ms (model=ranker-v14)

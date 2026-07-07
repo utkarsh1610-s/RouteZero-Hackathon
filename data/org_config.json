@@ -1,0 +1,107 @@
+{
+  "company": "StreamCo",
+  "description": "Fictional streaming company used for the RouteZero demo.",
+  "services": {
+    "payment-service": {
+      "owning_team": "payments-team",
+      "jira_project_key": "PAY",
+      "critical_path": true,
+      "default_priority": "P1",
+      "keywords": ["PaymentProcessor", "payment", "gateway", "charge", "billing", "transaction", "stripe", "invoice"],
+      "file_path_patterns": ["payment", "billing", "gateway", "processor"]
+    },
+    "auth-service": {
+      "owning_team": "security-team",
+      "jira_project_key": "AUTH",
+      "critical_path": true,
+      "default_priority": "P1",
+      "keywords": ["TokenValidator", "auth", "token", "JWT", "login", "credential", "unauthorized", "authentication", "session"],
+      "file_path_patterns": ["auth", "token", "login", "session"]
+    },
+    "recommendation-engine": {
+      "owning_team": "ml-platform-team",
+      "jira_project_key": "ML",
+      "critical_path": false,
+      "default_priority": "P3",
+      "keywords": ["Recommender", "recommendation", "inference", "model", "embedding", "ranking", "personalization"],
+      "file_path_patterns": ["ml_service", "recommender", "inference", "model"]
+    },
+    "video-delivery": {
+      "owning_team": "infra-team",
+      "jira_project_key": "VID",
+      "critical_path": true,
+      "default_priority": "P1",
+      "keywords": ["CDN", "video", "stream", "playback", "transcode", "manifest", "buffering", "segment"],
+      "file_path_patterns": ["video", "cdn", "stream", "transcode"]
+    },
+    "user-profile-service": {
+      "owning_team": "backend-team",
+      "jira_project_key": "USR",
+      "critical_path": false,
+      "default_priority": "P3",
+      "keywords": ["UserProfile", "profile", "preferences", "avatar", "watchlist", "account settings"],
+      "file_path_patterns": ["profile", "user_profile", "preferences"]
+    }
+  },
+  "teams": {
+    "payments-team": {
+      "lead": "Priya Sharma",
+      "on_call_rotation": ["Marcus Webb", "Elena Volkov", "Dan Okafor"],
+      "manager": "Sofia Reyes",
+      "slack_channel": "#payments-oncall",
+      "default_jira_assignee": "marcus.webb"
+    },
+    "security-team": {
+      "lead": "James Chen",
+      "on_call_rotation": ["Aisha Patel", "Tom Lindgren", "Rachel Kim"],
+      "manager": "David Osei",
+      "slack_channel": "#security-incidents",
+      "default_jira_assignee": "aisha.patel"
+    },
+    "ml-platform-team": {
+      "lead": "Nina Petrova",
+      "on_call_rotation": ["Carlos Mendez", "Yuki Tanaka"],
+      "manager": "Sofia Reyes",
+      "slack_channel": "#ml-platform",
+      "default_jira_assignee": "carlos.mendez"
+    },
+    "infra-team": {
+      "lead": "Omar Haddad",
+      "on_call_rotation": ["Lisa Park", "Viktor Novak", "Sam Rivera"],
+      "manager": "Grace Liu",
+      "slack_channel": "#infra-alerts",
+      "default_jira_assignee": "lisa.park"
+    },
+    "backend-team": {
+      "lead": "Fatima Al-Rashid",
+      "on_call_rotation": ["Ben Carter", "Ingrid Larsen"],
+      "manager": "Grace Liu",
+      "slack_channel": "#backend-eng",
+      "default_jira_assignee": "ben.carter"
+    }
+  },
+  "priority_rules": {
+    "P1": [
+      "critical_path service AND production environment",
+      "affected_users > 500",
+      "sla_breach_minutes < 60 AND critical_path service"
+    ],
+    "P2": [
+      "production environment AND NOT critical_path service",
+      "staging environment AND critical_path service"
+    ],
+    "P3": ["everything else"]
+  },
+  "manager_digest_thresholds": {
+    "same_service_incidents_per_hour": 3,
+    "priority_always_triggers": "P1",
+    "affected_users_threshold": 500
+  },
+  "architectural_audit": {
+    "lookback_days": 7,
+    "recurring_location_min_incidents": 2,
+    "service_stress_min_incidents": 3,
+    "plm_jira_project_key": "PLM",
+    "plm_assignee": "priya.sharma"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "incident_id": "INC-2026-0155",
+  "jira_ticket_ref": "ML-448",
+  "timestamp": "2026-07-03T11:30:00",
+  "service": "recommendation-engine",
+  "failure_type": "timeout",
+  "environment": "production",
+  "is_critical_path": false,
+  "affected_users": 88,
+  "priority": "P2",
+  "stack_trace_locations": [
+    {
+      "file_path": "ml_service/recommender.py",
+      "line_number": 42,
+      "function_name": "get_recommendations",
+      "raw_line": "  File \"ml_service/recommender.py\", line 42, in get_recommendations"
+    }
+  ],
+  "probable_cause": null,
+  "linked_deployment": null,
+  "routing_confidence": 0.79,
+  "owning_team": "ml-platform-team",
+  "resolved": true,
+  "resolution_time_minutes": 63,
+  "agent3_summary": "Homepage recommendations for 88 users silently fell back to trending titles after get_recommendations timed out while the model inference queue was saturated during the evening traffic peak."
+}

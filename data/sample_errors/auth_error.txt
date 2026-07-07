@@ -1,0 +1,8 @@
+2026-07-06 09:14:22,847 WARNING auth_service.middleware: authentication failed for GET /api/v1/library on pod auth-service-prod-6d9f4b; rejecting request with 401 Unauthorized
+2026-07-06 09:14:22,851 ERROR auth_service.token_validator: TokenValidator rejected bearer token for client mobile-ios-7.4.2
+Traceback (most recent call last):
+  File "auth_service/token_validator.py", line 28, in validate_token
+    claims = self._verify_signature(token)
+  File "auth_service/token_validator.py", line 47, in _verify_signature
+    raise InvalidTokenError("JWT signature verification failed: digest mismatch")
+auth_service.token_validator.InvalidTokenError: JWT signature verification failed: digest mismatch

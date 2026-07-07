@@ -1,0 +1,32 @@
+{
+  "incident_id": "INC-2026-0134",
+  "jira_ticket_ref": "PAY-1042",
+  "timestamp": "2026-06-29T14:23:00",
+  "service": "payment-service",
+  "failure_type": "null_pointer",
+  "environment": "production",
+  "is_critical_path": true,
+  "affected_users": 612,
+  "priority": "P1",
+  "stack_trace_locations": [
+    {
+      "file_path": "payment_service/processor.py",
+      "line_number": 31,
+      "function_name": "process_payment",
+      "raw_line": "  File \"payment_service/processor.py\", line 31, in process_payment"
+    },
+    {
+      "file_path": "shared/database_pool.py",
+      "line_number": 27,
+      "function_name": "get_connection",
+      "raw_line": "  File \"shared/database_pool.py\", line 27, in get_connection"
+    }
+  ],
+  "probable_cause": null,
+  "linked_deployment": null,
+  "routing_confidence": 0.94,
+  "owning_team": "payments-team",
+  "resolved": true,
+  "resolution_time_minutes": 142,
+  "agent3_summary": "Checkout charges failed for 612 production users because process_payment called a method on a gateway response that was None instead of a valid response object."
+}

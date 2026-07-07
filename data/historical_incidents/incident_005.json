@@ -1,0 +1,26 @@
+{
+  "incident_id": "INC-2026-0162",
+  "jira_ticket_ref": "PAY-1063",
+  "timestamp": "2026-07-05T08:12:00",
+  "service": "payment-service",
+  "failure_type": "null_pointer",
+  "environment": "production",
+  "is_critical_path": true,
+  "affected_users": 923,
+  "priority": "P1",
+  "stack_trace_locations": [
+    {
+      "file_path": "payment_service/processor.py",
+      "line_number": 31,
+      "function_name": "process_payment",
+      "raw_line": "  File \"payment_service/processor.py\", line 31, in process_payment"
+    }
+  ],
+  "probable_cause": null,
+  "linked_deployment": null,
+  "routing_confidence": 0.93,
+  "owning_team": "payments-team",
+  "resolved": false,
+  "resolution_time_minutes": null,
+  "agent3_summary": "Recurring subscription charges failed for 923 production users when process_payment hit the same unchecked None gateway response at line 31 for the third time this week."
+}

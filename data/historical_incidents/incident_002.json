@@ -1,0 +1,26 @@
+{
+  "incident_id": "INC-2026-0141",
+  "jira_ticket_ref": "AUTH-2210",
+  "timestamp": "2026-07-01T09:47:00",
+  "service": "auth-service",
+  "failure_type": "auth_failure",
+  "environment": "production",
+  "is_critical_path": true,
+  "affected_users": 1284,
+  "priority": "P1",
+  "stack_trace_locations": [
+    {
+      "file_path": "auth_service/token_validator.py",
+      "line_number": 28,
+      "function_name": "validate_token",
+      "raw_line": "  File \"auth_service/token_validator.py\", line 28, in validate_token"
+    }
+  ],
+  "probable_cause": null,
+  "linked_deployment": null,
+  "routing_confidence": 0.88,
+  "owning_team": "security-team",
+  "resolved": true,
+  "resolution_time_minutes": 95,
+  "agent3_summary": "Around 1,284 users were locked out of their accounts after validate_token began rejecting freshly issued JWTs because the production signing key had rotated without the validator picking up the new key."
+}

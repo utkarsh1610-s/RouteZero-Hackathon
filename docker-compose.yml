@@ -1,0 +1,30 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.backend
+    env_file:
+      - .env
+    environment:
+      - DUCKDB_PATH=/app/database/routezero.db
+    volumes:
+      - ./database:/app/database
+      - ./data:/app/data
+      - ./demo_repo:/app/demo_repo
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.frontend
+    env_file:
+      - .env
+    environment:
+      - BACKEND_URL=http://backend:8000
+    volumes:
+      - ./database:/app/database
+    ports:
+      - "8501:8501"
+    depends_on:
+      - backend

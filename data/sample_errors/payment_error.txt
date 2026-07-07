@@ -1,0 +1,6 @@
+2026-07-06 14:03:11,092 WARNING payment_service.gateway: POST /v1/charges returned HTTP 503 for customer cus_4T9GK2; gateway sent no usable response body (env=production)
+2026-07-06 14:03:11,097 ERROR payment_service.processor: PaymentProcessor could not complete charge for customer cus_4T9GK2; billing transaction aborted
+Traceback (most recent call last):
+  File "payment_service/processor.py", line 31, in process_payment
+    transaction_id = gateway_response.transaction_id
+AttributeError: 'NoneType' object has no attribute 'transaction_id'
