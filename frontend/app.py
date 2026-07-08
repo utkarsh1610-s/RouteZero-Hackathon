@@ -802,6 +802,30 @@ with tab_new:
     raw_error_text = st.text_area("err", height=160, key="raw_error_text",
         placeholder="Traceback (most recent call last):\n  File \"payment_service/processor.py\", line 31, in process_payment\n    ...\nAttributeError: 'NoneType' object has no attribute 'transaction_id'",
         label_visibility="collapsed")
+    
+    # ── File upload ───────────────────────────────────────────────────
+    uploaded_files = st.file_uploader(
+        "Attach files",
+        accept_multiple_files=True,
+        type=["txt","log","py","js","ts","java","go","rb","cpp","json","csv","md"],
+        key="file_uploads",
+        label_visibility="collapsed",
+    )
+    file_context = ""
+    if uploaded_files:
+        st.markdown(
+            '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;">' +
+            "".join(f'<span style="background:{C_CARD2};border:1px solid {C_BORDER};border-radius:4px;padding:2px 10px;font-size:11px;color:{C_MUTED};font-family:monospace;">{f.name}</span>' for f in uploaded_files) +
+            '</div>', unsafe_allow_html=True)
+        for f in uploaded_files:
+            try:
+                content = f.read().decode("utf-8", errors="ignore")
+                if f.name.endswith(".csv"):
+                    lines = content.split("\n")
+                    content = "\n".join(lines[:50]) + ("\n... (truncated)" if len(lines)>50 else "")
+                file_context += f"\n\n--- FILE: {f.name} ---\n{content}"
+            except Exception:
+                pass
 
     with st.expander("Add context  —  improves routing confidence", expanded=False):
         c1,c2,c3 = st.columns(3)
@@ -824,7 +848,10 @@ with tab_new:
         deployed_minutes_ago = st.number_input("Deployed how many minutes ago?",min_value=0,step=1,value=None,key="ctx_dma")
 
     def build_body():
-        body = {"raw_error_text": raw_error_text.strip()}
+        combined = raw_error_text.strip()
+        if file_context:
+            combined += file_context
+        body = {"raw_error_text": combined}
         if service_hint.strip(): body["service_hint"]=service_hint.strip()
         if environment:          body["environment"]=environment
         if occurrences is not None: body["occurrences_last_4h"]=int(occurrences)
@@ -841,7 +868,7 @@ with tab_new:
         return body
 
     st.markdown("<div style='height:4px;'></div>", unsafe_allow_html=True)
-    if st.button("⚡  Route Incident", type="primary", disabled=not raw_error_text.strip()):
+    if st.button("⚡  Route Incident", type="primary", disabled=not raw_error_text.strip() and not file_context):
         with st.spinner("Classifier → Router → Ticket Writer..."):
             result = api_post("/incidents", build_body(), timeout=LLM_TIMEOUT)
         if result:
