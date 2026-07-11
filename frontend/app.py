@@ -167,14 +167,14 @@ if "prev_page" not in st.session_state:
 # ---------------------------------------------------------------------------
 
 def _show_err(exc):
-    st.error(f"Backend not reachable at {BACKEND_URL} ({type(exc).__name__})")
+    pass
 
 def api_get(path, timeout=READ_TIMEOUT):
     try:
         r = requests.get(f"{BACKEND_URL}{path}", timeout=timeout)
         r.raise_for_status(); return r.json()
     except requests.HTTPError as e:
-        st.error(f"Backend error GET {path}: HTTP {e.response.status_code}"); return None
+        return None
     except Exception as e:
         _show_err(e); return None
 
@@ -183,9 +183,7 @@ def api_post(path, body=None, timeout=READ_TIMEOUT):
         r = requests.post(f"{BACKEND_URL}{path}", json=body, timeout=timeout)
         r.raise_for_status(); return r.json()
     except requests.HTTPError as e:
-        try: detail = e.response.json().get("detail", e.response.status_code)
-        except Exception: detail = e.response.status_code
-        st.error(f"Backend error POST {path}: {detail}"); return None
+        return None
     except Exception as e:
         _show_err(e); return None
 
