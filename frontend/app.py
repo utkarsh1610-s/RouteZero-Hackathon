@@ -945,7 +945,7 @@ with tab_history:
     if not incidents: st.markdown(f'<div style="text-align:center;padding:40px;color:{C_MUTED};font-size:14px;">No incidents yet.</div>', unsafe_allow_html=True)
     elif not filtered: st.markdown(f'<div style="text-align:center;padding:40px;color:{C_MUTED};font-size:14px;">No incidents match.</div>', unsafe_allow_html=True)
     else:
-        st.dataframe(pd.DataFrame([{"ID":i.get("incident_id","—"),"Service":i.get("service","—"),"Failure":i.get("failure_type","—"),"Priority":i.get("priority","—"),"When":fmt_ts(i.get("timestamp")),"Users":i.get("affected_users") or "—","Status":"✅ Resolved" if i.get("resolved") else "🔴 Open"} for i in filtered]),use_container_width=True,hide_index=True)
+        st.dataframe(pd.DataFrame([{"ID":i.get("incident_id","—"),"Service":i.get("service","—"),"Failure":i.get("failure_type","—"),"Priority":i.get("priority","—"),"When":fmt_ts(i.get("timestamp")),"Users":str(i.get("affected_users") or "—"),"Status":"✅ Resolved" if i.get("resolved") else "🔴 Open"} for i in filtered]),use_container_width=True,hide_index=True)
         dc=st.session_state.setdefault("detail_cache",{})
         for inc in filtered:
             iid=inc.get("incident_id",""); res=bool(inc.get("resolved")); p=inc.get("priority","P3")
@@ -953,7 +953,9 @@ with tab_history:
             if res: hdr+=" ✅"
             with st.expander(hdr):
                 if inc.get("agent3_summary"): st.markdown(f'<div style="font-size:13px;color:{C_MUTED};margin-bottom:12px;font-style:italic;">{inc["agent3_summary"]}</div>', unsafe_allow_html=True)
-                if iid not in dc: dc[iid]=api_get(f"/incidents/{iid}/detail")
+                if iid not in dc:
+                    try: dc[iid]=api_get(f"/incidents/{iid}/detail")
+                    except Exception: dc[iid]=None
                 detail=dc.get(iid)
                 if detail:
                     rou=detail.get("routing") or {}
@@ -990,7 +992,10 @@ with tab_intel:
         st.markdown("<div style='height:28px;'></div>", unsafe_allow_html=True)
         run_audit=st.button("🔍  Run Audit",type="primary")
 
-    latest_audit=api_get("/audit/latest")
+    try:
+        latest_audit=api_get("/audit/latest")
+    except Exception:
+        latest_audit=None
     if run_audit:
         with st.spinner("Agent 4 analyzing incident history and code graph..."):
             ar=api_post("/audit",timeout=LLM_TIMEOUT)
