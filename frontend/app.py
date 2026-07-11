@@ -685,8 +685,8 @@ try:
     latest_audit_data  = api_get("/audit/latest")
     last_audit_ts      = fmt_ts(latest_audit_data.get("timestamp")) if latest_audit_data else "Never"
 except Exception:
-    stats = {}; all_incidents_data = []; total_routed = 0
-    open_p1s = 0; resolved_ct = 0; fw_calls = 0; last_audit_ts = "—"
+    stats={}; all_incidents_data=[]; total_routed=0
+    open_p1s=0; resolved_ct=0; fw_calls=0; last_audit_ts="—"
 
 p1c = C_RED if open_p1s>0 else C_GREEN
 st.markdown(f"""<div class="status-bar">
