@@ -1071,7 +1071,7 @@ with tab_intel:
     if graph_data and graph_data.get("nodes"):
         try:
             st.markdown(f'<div style="font-size:11px;color:{C_MUTED};margin-bottom:10px;padding:10px 14px;background:{C_CARD};border:1px solid {C_BORDER};border-radius:8px;display:flex;gap:20px;align-items:center;flex-wrap:wrap;"><span>🖱 <strong style="color:{C_TEXT};">Drag</strong> pan</span><span>🔍 <strong style="color:{C_TEXT};">Scroll</strong> zoom</span><span>👆 <strong style="color:{C_TEXT};">Hover</strong> details</span><span style="margin-left:auto;display:flex;gap:14px;"><span><span style="color:{C_RED};">●</span> 2+ incidents</span><span><span style="color:{C_ORANGE};">●</span> connected</span><span><span style="color:#888;">●</span> clean</span></span></div>', unsafe_allow_html=True)
-            components.html(build_graph_html(graph_data_landing), height=360, scrolling=False)
+            components.html(build_graph_html(graph_data), height=580, scrolling=False)
         except Exception:
             st.markdown(f'<div style="height:360px;background:{C_CARD2};border:1px solid {C_BORDER};border-radius:10px;display:flex;align-items:center;justify-content:center;color:{C_TEXT2};font-size:13px;">Graph unavailable</div>', unsafe_allow_html=True)
     else:
