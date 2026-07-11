@@ -23,22 +23,21 @@ LLM_TIMEOUT     = 120
 APPROVE_TIMEOUT = 30
 
 # ── Colour tokens ─────────────────────────────────────────────────────────────
-# Light theme: beige bg, white cards, black dark-cards, cyan accent
 C_RED    = "#c0392b"
 C_AMBER  = "#b7770d"
 C_BLUE   = "#1a6bbf"
 C_GREEN  = "#1a7a2e"
 C_ORANGE = "#c0580a"
-C_BG     = "#F2ECCF"       # beige page background
-C_CARD   = "#FFFFFF"       # white card
-C_CARD2  = "#000000"       # dark/black card
-C_BORDER = "#000000"       # warm grey border
-C_MUTED  = "#6b6250"       # muted warm brown text
-C_TEXT   = "#1a1a1a"       # dark text (on light bg)
-C_TEXT2  = "#ffffff"       # light text (on dark bg)
+C_BG     = "#F2ECCF"
+C_CARD   = "#FFFFFF"
+C_CARD2  = "#000000"
+C_BORDER = "#000000"
+C_MUTED  = "#6b6250"
+C_TEXT   = "#1a1a1a"
+C_TEXT2  = "#ffffff"
 C_TEXT3  = "#ffffff"
-C_ACCENT = "#0fa8b0"       # teal/cyan accent
-C_ACC2   = "#0d8a91"       # darker teal
+C_ACCENT = "#0fa8b0"
+C_ACC2   = "#0d8a91"
 PRIORITY_COLOR = {"P1": C_RED, "P2": C_AMBER, "P3": C_BLUE}
 
 GLOBAL_CSS = f"""
@@ -57,7 +56,6 @@ div,span{{font-family:'Inter','Segoe UI',system-ui,sans-serif!important;}}
 [data-testid="stBaseButton-secondary"]:hover *{{color:#ffffff!important;}}
 code,pre{{font-family:'JetBrains Mono',monospace!important;}}
 
-/* ── NAV ── */
 .hero-kicker {{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:{C_ACCENT};margin-bottom:16px;display:flex;align-items:center;gap:8px;}}
 .hero-kicker::before {{content:'';width:24px;height:2px;background:{C_ACCENT};display:inline-block;}}
 .hero-h1 {{font-size:52px;font-weight:900;letter-spacing:-.04em;line-height:1.05;color:{C_TEXT};margin:0 0 20px 0;}}
@@ -68,33 +66,27 @@ code,pre{{font-family:'JetBrains Mono',monospace!important;}}
 .section-eyebrow {{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:{C_ACCENT};margin-bottom:10px;}}
 .section-title {{font-size:30px;font-weight:800;letter-spacing:-.03em;color:{C_TEXT};margin:0 0 8px 0;}}
 
-/* ── PILLARS ── */
 .pillars-grid {{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:64px;}}
 .pillar {{background:{C_CARD};border:1px solid {C_BORDER};border-radius:10px;padding:22px 20px;}}
 .pillar-icon {{width:36px;height:36px;border-radius:8px;background:{C_CARD2};display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:14px;}}
 .pillar-title {{font-size:15px;font-weight:700;color:{C_TEXT};margin-bottom:6px;}}
 .pillar-desc {{font-size:13px;color:{C_MUTED};line-height:1.6;}}
 
-/* ── ARCH ── */
 .arch-title {{font-size:28px;font-weight:800;letter-spacing:-.03em;color:{C_TEXT};margin:0 0 12px 0;}}
 .arch-desc {{font-size:14px;color:{C_MUTED};line-height:1.7;margin:0 0 24px 0;}}
 
-/* ── INTEGRATIONS ── */
 .integrations-row {{display:flex;align-items:center;justify-content:center;gap:36px;padding:36px 0 28px 0;border-top:1px solid {C_BORDER};flex-wrap:wrap;}}
 .int-badge {{font-size:14px;font-weight:700;color:{C_MUTED};display:flex;align-items:center;gap:7px;}}
 
-/* ── DASHBOARD ── */
 .status-bar {{display:flex;align-items:center;background:{C_CARD};border:1px solid {C_BORDER};border-radius:10px;overflow:hidden;margin-bottom:24px;}}
 .status-item {{flex:1;padding:14px 20px;border-right:1px solid {C_BORDER};}}
 .status-item:last-child {{border-right:none;}}
 .status-value {{font-size:22px;font-weight:800;line-height:1;margin-bottom:3px;letter-spacing:-.02em;color:{C_TEXT};}}
 .status-label {{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:{C_MUTED};}}
 
-/* ── ROUTING BLOCK ── */
 .routing-block {{background:{C_CARD};border:1px solid {C_BORDER};border-radius:10px;padding:22px 26px;margin:20px 0;position:relative;overflow:hidden;}}
 .routing-block::before {{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,{C_ACCENT},{C_BLUE},transparent);}}
 
-/* ── BADGES ── */
 .badge {{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}}
 .badge-p1 {{background:{C_RED}18;color:{C_RED};border:1px solid {C_RED}40;}}
 .badge-p2 {{background:{C_AMBER}18;color:{C_AMBER};border:1px solid {C_AMBER}40;}}
@@ -104,7 +96,6 @@ code,pre{{font-family:'JetBrains Mono',monospace!important;}}
 .badge-info {{background:{C_ACCENT}18;color:{C_ACCENT};border:1px solid {C_ACCENT}40;}}
 .badge-demo {{background:#7c3aed18;color:#7c3aed;border:1px solid #7c3aed40;}}
 
-/* ── MISC ── */
 .rz-bar-bg {{background:{C_BORDER};border-radius:3px;height:4px;width:100%;margin-top:8px;}}
 .rz-bar-fill {{height:4px;border-radius:3px;}}
 .cause-callout {{background:linear-gradient(135deg,{C_AMBER}0a,transparent);border:1px solid {C_AMBER}40;border-left:3px solid {C_AMBER};border-radius:8px;padding:14px 18px;margin:16px 0;}}
@@ -112,7 +103,6 @@ code,pre{{font-family:'JetBrains Mono',monospace!important;}}
 .approve-zone {{background:linear-gradient(135deg,{C_GREEN}0a,transparent);border:1px solid {C_GREEN}40;border-left:3px solid {C_GREEN};border-radius:10px;padding:20px 24px;margin-top:24px;}}
 .stress-warning {{background:{C_RED}0a;border:1px solid {C_RED}30;border-left:3px solid {C_RED};border-radius:8px;padding:12px 16px;margin-bottom:10px;font-size:13px;color:{C_TEXT};}}
 
-/* ── DARK CARDS — text must be light ── */
 .flag-card {{background:{C_CARD2};border:1px solid {C_CARD2};border-left:3px solid {C_RED};border-radius:8px;padding:18px 22px;margin-bottom:14px;}}
 .flag-card * {{color:{C_TEXT2}!important;}}
 .rz-card {{background:{C_CARD2};border:1px solid {C_BORDER};border-radius:8px;padding:16px 20px;margin-bottom:12px;}}
@@ -125,7 +115,6 @@ code,pre{{font-family:'JetBrains Mono',monospace!important;}}
 .step-desc {{font-size:13px;margin-top:8px;margin-left:38px;line-height:1.6;}}
 .code-block {{background:#060810;border:1px solid #333;border-radius:6px;padding:12px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#7dd3fc;margin-top:10px;margin-left:38px;overflow-x:auto;white-space:pre;line-height:1.6;}}
 
-/* ── TABS ── */
 [data-testid="stTabs"] [role="tablist"]{{border-bottom:1px solid {C_BORDER}!important;gap:4px;}}
 [data-testid="stTabs"] [role="tab"]{{font-size:13px;font-weight:500;color:{C_MUTED};padding:8px 16px;border-radius:6px 6px 0 0;}}
 [data-testid="stTabs"] [role="tab"][aria-selected="true"]{{color:{C_TEXT};font-weight:700;background:{C_CARD};}}
@@ -134,7 +123,6 @@ code,pre{{font-family:'JetBrains Mono',monospace!important;}}
 div[data-testid="stDataFrame"]{{border:1px solid {C_BORDER};border-radius:8px;overflow:hidden;}}
 iframe{{border:none!important;border-radius:8px;}}
 
-/* ── INPUTS ── */
 textarea{{background:{C_CARD2}!important;border:1px solid {C_BORDER}!important;border-radius:8px!important;color:{C_TEXT2}!important;font-family:'JetBrains Mono',monospace!important;font-size:13px!important;line-height:1.6!important;}}
 textarea:focus{{border-color:{C_ACCENT}!important;box-shadow:0 0 0 2px {C_ACCENT}20!important;}}
 textarea::placeholder{{color:#888!important;}}
@@ -173,7 +161,7 @@ def api_get(path, timeout=READ_TIMEOUT):
     try:
         r = requests.get(f"{BACKEND_URL}{path}", timeout=timeout)
         r.raise_for_status(); return r.json()
-    except requests.HTTPError as e:
+    except requests.HTTPError:
         return None
     except Exception as e:
         _show_err(e); return None
@@ -182,7 +170,7 @@ def api_post(path, body=None, timeout=READ_TIMEOUT):
     try:
         r = requests.post(f"{BACKEND_URL}{path}", json=body, timeout=timeout)
         r.raise_for_status(); return r.json()
-    except requests.HTTPError as e:
+    except requests.HTTPError:
         return None
     except Exception as e:
         _show_err(e); return None
@@ -263,7 +251,7 @@ def render_nav(current_page: str):
         border: none !important;
         border-right: 1px solid {C_BORDER} !important;
         background: {C_CARD} !important;
-        color: {C_TEXT2} !important;
+        color: {C_TEXT} !important;
         font-size: 14px !important;
         font-weight: 600 !important;
         letter-spacing: 0.02em !important;
@@ -346,7 +334,42 @@ def render_dash_nav(current_page: str):
 # ---------------------------------------------------------------------------
 
 def build_graph_html(graph_data):
-    return None
+    try:
+        from pyvis.network import Network
+        nodes = graph_data.get("nodes") or []
+        edges = graph_data.get("edges") or []
+        red_ids = {n.get("node_id") for n in nodes if int(n.get("incident_count") or 0)>=2 and n.get("node_id")}
+        adj = {}
+        for e in edges:
+            s,t = e.get("source_node_id"), e.get("target_node_id")
+            if s and t: adj.setdefault(s,set()).add(t); adj.setdefault(t,set()).add(s)
+        net = Network(height="520px",width="100%",directed=True,cdn_resources="remote",bgcolor="#1a1a1a",font_color=C_TEXT2)
+        net.set_options("""{
+          "physics":{"enabled":true,"forceAtlas2Based":{"gravitationalConstant":-80,"centralGravity":0.005,"springLength":130,"springConstant":0.04,"damping":0.6,"avoidOverlap":1},"maxVelocity":40,"minVelocity":0.75,"solver":"forceAtlas2Based","stabilization":{"enabled":true,"iterations":200,"updateInterval":25}},
+          "nodes":{"borderWidth":0,"borderWidthSelected":2,"font":{"size":11,"face":"Inter, sans-serif"},"scaling":{"min":16,"max":44}},
+          "edges":{"smooth":{"type":"continuous","roundness":0.3},"width":1,"selectionWidth":2},
+          "interaction":{"hover":true,"navigationButtons":true,"keyboard":true,"tooltipDelay":80,"zoomView":true,"dragView":true}
+        }""")
+        added = set()
+        for node in nodes:
+            nid = node.get("node_id")
+            if not nid: continue
+            ic = int(node.get("incident_count") or 0)
+            if nid in red_ids: color={"background":C_RED,"border":C_RED,"highlight":{"background":"#e74c3c","border":"#c0392b"}}
+            elif adj.get(nid,set())&red_ids: color={"background":C_ORANGE,"border":C_ORANGE,"highlight":{"background":"#e67e22","border":"#d35400"}}
+            else: color={"background":"#2d2d2d","border":"#444","highlight":{"background":"#3d3d3d","border":"#555"}}
+            name = node.get("name",nid)
+            hover = f"{name}\n{node.get('file_path','?')} L{node.get('start_line','?')}-{node.get('end_line','?')}\nincidents: {ic}"
+            net.add_node(nid,label=name,color=color,size=16+8*ic,title=hover,font={"color":C_TEXT2,"size":11})
+            added.add(nid)
+        for e in edges:
+            s,t = e.get("source_node_id"),e.get("target_node_id")
+            if s in added and t in added:
+                net.add_edge(s,t,title=e.get("relationship_type",""),color={"color":"#555","highlight":C_ACCENT},arrows="to")
+        return net.generate_html()
+    except Exception:
+        return None
+
 # ---------------------------------------------------------------------------
 # Page renderers
 # ---------------------------------------------------------------------------
@@ -577,7 +600,6 @@ if st.session_state["page"] == "landing":
         </div>
         """, unsafe_allow_html=True)
 
-    # Feature pillars
     st.markdown("<div style='height:56px;'></div>", unsafe_allow_html=True)
     st.markdown(f"""<div class="pillars-grid">
       <div class="pillar"><div class="pillar-icon">🔒</div><div class="pillar-title">Zero LLM for Classification</div><div class="pillar-desc">Agent 1 uses deterministic regex and rules. Every classification is fully auditable and traceable to a specific rule.</div></div>
@@ -585,7 +607,6 @@ if st.session_state["page"] == "landing":
       <div class="pillar"><div class="pillar-icon">✅</div><div class="pillar-title">Traceable to Verified Facts</div><div class="pillar-desc">Every claim in every ticket traces to a verified input. The system never invents a number or file name.</div></div>
     </div>""", unsafe_allow_html=True)
 
-    # Agent pipeline
     st.markdown(f"""<div style="border-top:1px solid {C_BORDER};padding-top:56px;margin-bottom:40px;">
       <div class="section-eyebrow">Four-agent pipeline</div>
       <div class="section-title">Every agent has one job.<br>Together they replace hours of manual work.</div>
@@ -609,12 +630,26 @@ if st.session_state["page"] == "landing":
         with arr:
             st.markdown(f'<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:20px;color:{C_BORDER};padding-top:40px;">→</div>', unsafe_allow_html=True)
 
-    # Arch intelligence
     st.markdown("<div style='height:56px;'></div>", unsafe_allow_html=True)
     arch_left, arch_right = st.columns([1,1], gap="large")
 
     with arch_left:
-        st.markdown(f'<div style="height:360px;background:{C_CARD2};border:1px solid {C_BORDER};border-radius:10px;display:flex;align-items:center;justify-content:center;color:{C_TEXT2};font-size:13px;">Graph available after audit — visit the dashboard</div>', unsafe_allow_html=True)
+        graph_data_landing = api_get("/graph/nodes")
+        if graph_data_landing and graph_data_landing.get("nodes"):
+            html = build_graph_html(graph_data_landing)
+            if html:
+                try: components.html(html, height=360, scrolling=False)
+                except Exception: st.markdown(f'<div style="height:360px;background:{C_CARD2};border:1px solid {C_BORDER};border-radius:10px;display:flex;align-items:center;justify-content:center;color:{C_TEXT2};font-size:13px;">Could not render graph</div>', unsafe_allow_html=True)
+            else:
+                st.markdown(f'<div style="height:360px;background:{C_CARD2};border:1px solid {C_BORDER};border-radius:10px;display:flex;align-items:center;justify-content:center;color:{C_TEXT2};font-size:13px;">Graph available after audit</div>', unsafe_allow_html=True)
+        else:
+            st.markdown(f"""<div style="height:360px;background:{C_CARD2};border:1px solid {C_BORDER};border-radius:10px;display:flex;align-items:center;justify-content:center;">
+              <div style="text-align:center;color:{C_TEXT2};">
+                <div style="font-size:32px;margin-bottom:8px;">🕸️</div>
+                <div style="font-size:13px;">Code knowledge graph</div>
+                <div style="font-size:11px;margin-top:4px;color:#aaa;">Run an audit to populate</div>
+              </div>
+            </div>""", unsafe_allow_html=True)
         st.markdown(f'<div style="display:flex;gap:16px;margin-top:10px;font-size:11px;color:{C_MUTED};"><span><span style="color:{C_RED};">●</span> 2+ incidents</span><span><span style="color:{C_ORANGE};">●</span> connected</span><span><span style="color:#888;">●</span> clean</span></div>', unsafe_allow_html=True)
 
     with arch_right:
@@ -628,7 +663,6 @@ if st.session_state["page"] == "landing":
             <div style="display:flex;align-items:flex-start;gap:10px;"><div style="width:6px;height:6px;border-radius:50%;background:{C_ACCENT};margin-top:5px;flex-shrink:0;"></div><div style="font-size:13px;color:{C_MUTED};">Files PLM tickets with developer attribution before the next incident</div></div>
           </div>
         </div>""", unsafe_allow_html=True)
-        st.markdown(f'<style>#arch_btn{{color:{C_TEXT2}!important;}} button[data-testid="baseButton-secondary"]{{color:{C_TEXT2}!important;}}</style>', unsafe_allow_html=True)
         if st.button("View Architectural Intelligence →", key="arch_btn"):
             st.session_state["page"] = "dashboard"; st.rerun()
 
@@ -671,8 +705,7 @@ if nav_click:
     st.session_state["prev_page"] = "dashboard"
     st.session_state["page"] = nav_click
     st.rerun()
-with st.spinner("Connecting to backend..."):
-    pass
+
 try:
     stats              = api_get("/stats") or {}
     all_incidents_data = api_get("/incidents") or []
@@ -1030,4 +1063,17 @@ with tab_intel:
             if contributing: st.caption("Contributing incidents: "+", ".join(contributing))
 
     st.markdown(f'<div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:{C_MUTED};margin:24px 0 8px 0;">Code Knowledge Graph</div>', unsafe_allow_html=True)
-    st.markdown(f'<div style="text-align:center;padding:60px;color:{C_MUTED};font-size:14px;background:{C_CARD};border:1px solid {C_BORDER};border-radius:8px;">Code graph — run an audit to populate.</div>', unsafe_allow_html=True)
+    graph_data=api_get("/graph/nodes")
+    if graph_data and graph_data.get("nodes"):
+        html = build_graph_html(graph_data)
+        if html:
+            try:
+                st.markdown(f'<div style="font-size:11px;color:{C_MUTED};margin-bottom:10px;padding:10px 14px;background:{C_CARD};border:1px solid {C_BORDER};border-radius:8px;display:flex;gap:20px;align-items:center;flex-wrap:wrap;"><span>🖱 <strong style="color:{C_TEXT};">Drag</strong> pan</span><span>🔍 <strong style="color:{C_TEXT};">Scroll</strong> zoom</span><span>👆 <strong style="color:{C_TEXT};">Hover</strong> details</span><span style="margin-left:auto;display:flex;gap:14px;"><span><span style="color:{C_RED};">●</span> 2+ incidents</span><span><span style="color:{C_ORANGE};">●</span> connected</span><span><span style="color:#888;">●</span> clean</span></span></div>', unsafe_allow_html=True)
+                components.html(html, height=580, scrolling=False)
+            except Exception as exc:
+                logger.error("Graph failed: %s", exc)
+                st.markdown(f'<div style="text-align:center;padding:60px;color:{C_MUTED};font-size:14px;background:{C_CARD};border:1px solid {C_BORDER};border-radius:8px;">Could not render graph.</div>', unsafe_allow_html=True)
+        else:
+            st.markdown(f'<div style="text-align:center;padding:60px;color:{C_MUTED};font-size:14px;background:{C_CARD};border:1px solid {C_BORDER};border-radius:8px;">Run an audit to populate the graph.</div>', unsafe_allow_html=True)
+    else:
+        st.markdown(f'<div style="text-align:center;padding:60px;color:{C_MUTED};font-size:14px;background:{C_CARD};border:1px solid {C_BORDER};border-radius:8px;">Code graph — run an audit to populate.</div>', unsafe_allow_html=True)
