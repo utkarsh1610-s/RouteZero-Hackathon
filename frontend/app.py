@@ -18,7 +18,7 @@ logger = logging.getLogger("routezero.frontend")
 
 BACKEND_URL     = os.getenv("BACKEND_URL", "http://localhost:8000").rstrip("/")
 DEMO_MODE       = os.getenv("DEMO_MODE", "true").strip().lower() in ("1", "true", "yes")
-READ_TIMEOUT    = 10
+READ_TIMEOUT    = 5
 LLM_TIMEOUT     = 120
 APPROVE_TIMEOUT = 30
 
@@ -671,7 +671,6 @@ if st.session_state["page"] == "connect":
 if st.session_state["page"] == "product":
     st.session_state["page"] = "landing"
     st.rerun()
-    
 # ---------------------------------------------------------------------------
 # PAGE: DASHBOARD
 # ---------------------------------------------------------------------------
@@ -682,15 +681,19 @@ if nav_click:
     st.session_state["page"] = nav_click
     st.rerun()
 
-stats              = api_get("/stats")
-all_incidents_data = api_get("/incidents") or []
-table_counts       = (stats or {}).get("table_counts") or {}
-total_routed       = table_counts.get("gold_incident_intelligence", 0)
-open_p1s           = sum(1 for i in all_incidents_data if i.get("priority")=="P1" and not i.get("resolved"))
-resolved_ct        = sum(1 for i in all_incidents_data if i.get("resolved"))
-fw_calls           = (stats or {}).get("fireworks_calls", 0)
-latest_audit_data  = api_get("/audit/latest")
-last_audit_ts      = fmt_ts(latest_audit_data.get("timestamp")) if latest_audit_data else "Never"
+try:
+    stats              = api_get("/stats") or {}
+    all_incidents_data = api_get("/incidents") or []
+    table_counts       = stats.get("table_counts") or {}
+    total_routed       = table_counts.get("gold_incident_intelligence", 0)
+    open_p1s           = sum(1 for i in all_incidents_data if i.get("priority")=="P1" and not i.get("resolved"))
+    resolved_ct        = sum(1 for i in all_incidents_data if i.get("resolved"))
+    fw_calls           = stats.get("fireworks_calls", 0)
+    latest_audit_data  = api_get("/audit/latest")
+    last_audit_ts      = fmt_ts(latest_audit_data.get("timestamp")) if latest_audit_data else "Never"
+except Exception:
+    stats = {}; all_incidents_data = []; total_routed = 0
+    open_p1s = 0; resolved_ct = 0; fw_calls = 0; last_audit_ts = "—"
 
 p1c = C_RED if open_p1s>0 else C_GREEN
 st.markdown(f"""<div class="status-bar">
